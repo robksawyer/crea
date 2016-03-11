@@ -101,7 +101,7 @@ void Fluid::setup(int width, int height, float scaleFactor, bool doFasterInterna
     this->flowHeight = height/scaleFactor;
     
     // Fluid
-    fluid.setup(flowWidth, flowHeight, width, height, doFasterInternalFormat);
+    fluid.setup(flowWidth, flowHeight, width, height);
     
     // Particles
     fluidParticles.setup(flowWidth, flowHeight, width, height);
@@ -346,20 +346,20 @@ void Fluid::updateDrawForces(float dt){
             }
             switch (markerForces[i].getType()){
                 case FT_DENSITY:
-                    fluid.addDensity(markerForces[i].getTextureReference(), strength);
+                    fluid.addDensity(markerForces[i].getTexture(), strength);
                     break;
                 case FT_VELOCITY:
-                    fluid.addVelocity(markerForces[i].getTextureReference(), strength);
-                    fluidParticles.addFlowVelocity(markerForces[i].getTextureReference(), strength);
+                    fluid.addVelocity(markerForces[i].getTexture(), strength);
+                    fluidParticles.addFlowVelocity(markerForces[i].getTexture(), strength);
                     break;
                 case FT_TEMPERATURE:
-                    fluid.addTemperature(markerForces[i].getTextureReference(), strength);
+                    fluid.addTemperature(markerForces[i].getTexture(), strength);
                     break;
                 case FT_PRESSURE:
-                    fluid.addPressure(markerForces[i].getTextureReference(), strength);
+                    fluid.addPressure(markerForces[i].getTexture(), strength);
                     break;
                 case FT_OBSTACLE:
-                    fluid.addTempObstacle(markerForces[i].getTextureReference());
+                    fluid.addTempObstacle(markerForces[i].getTexture());
                 default:
                     break;
             }
